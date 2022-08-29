@@ -14,15 +14,15 @@ import java.util.stream.IntStream;
 
 @Component
 public class DatabaseLoader implements ApplicationRunner {
-    private final PostRepository postRepository;
-    private final AuthorRepository authorRepository;
+
     private final String[] templates = {
             "Smart Home %s", "Mobile %s - For When You're On he Go", "The %s - Your New Favorite Accessory"};
     private final String[] gadgets = {
             "Earbuds", "Speakers", "Tripod", "Instant Pot", "Coffee Cup", "Keyboard", "Sunglasses"};
     public List<Post> randomPosts = new ArrayList<>();
     public List<Author> authors = new ArrayList<>();
-
+    private final PostRepository postRepository;
+    private final AuthorRepository authorRepository;
     @Autowired
     public DatabaseLoader(PostRepository postRepository, AuthorRepository authorRepository) {
         this.postRepository = postRepository;
@@ -35,7 +35,7 @@ public class DatabaseLoader implements ApplicationRunner {
                 new Author("sholderness", "Sarah", "Holderness", "password"),
                 new Author("tbell", "Tom", "Bell", "password"),
                 new Author("efisher", "Eric", "Fisher", "password"),
-                new Author("csouze", "Carlos", "Souza", "password")
+                new Author("csouza", "Carlos", "Souza", "password")
         ));
         authorRepository.saveAll(authors);
         IntStream.range(0,40).forEach(i->{
